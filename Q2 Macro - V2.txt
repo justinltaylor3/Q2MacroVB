@@ -1,0 +1,38 @@
+Sub Q2DDATEST()
+
+''Columns("A,B,E,F").EntireColumn.Delete
+Columns(1).EntireColumn.Delete
+Columns(1).EntireColumn.Delete
+Columns(2).EntireColumn.Delete
+Columns(3).EntireColumn.Delete
+
+Dim creditsNumber As String
+Dim rowCounter As Integer
+Dim holdText As String
+Dim rng As Range
+
+rowCounter = 2
+''To delete spaces
+Set rng = Range("C2:C5000")
+rng.Value = Application.Trim(rng)
+
+''For Credit entires
+While Not IsEmpty(Cells(rowCounter, 2))
+
+    If Cells(rowCounter, 2) = "C" Then
+        creditsNumber = Right(Cells(rowCounter, 3), 17)
+        Cells(rowCounter, 4).Value = creditsNumber
+        creditsNumber = Left(Cells(rowCounter, 4), 8)
+        Cells(rowCounter, 4).Value = creditsNumber
+       Else
+        Cells(rowCounter, 2) = "D"
+        creditsNumber = Right(Cells(rowCounter, 3), 8)
+        Cells(rowCounter, 4).Value = creditsNumber
+    
+    End If
+    
+    rowCounter = rowCounter + 1
+Wend
+
+
+End Sub
